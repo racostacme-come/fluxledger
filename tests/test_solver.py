@@ -104,3 +104,25 @@ def test_exact_average_helpers():
             fourier_average(16, **kwargs)
     with pytest.raises(ValueError):
         top_hat_average(20, left=0.8, right=0.2)
+
+
+def test_third_order_time_accuracy_against_semidiscrete_heat():
+    n, nu, duration = 32, 0.02, 0.5
+    initial = fourier_average(n, mode=3)
+    eigenvalue = -4 * nu * n**2 * np.sin(3 * np.pi / n) ** 2
+    target = 1 + (initial - 1) * np.exp(eigenvalue * duration)
+    errors, steps = [], []
+    for cfl in (1.0, 0.5, 0.25):
+        result = solve(initial, velocity=0, diffusivity=nu, duration=duration, cfl=cfl)
+        errors.append(np.max(np.abs(result.values - target)))
+        steps.append(result.dt)
+    order = np.log(errors[-2] / errors[-1]) / np.log(steps[-2] / steps[-1])
+    assert 2.9 < order < 3.2
+
+
+def test_nonunit_domain_and_second_fourier_mode():
+    initial = fourier_average(160, length=3, mode=2)
+    result = solve(initial, length=3, velocity=-0.8, diffusivity=0.01, duration=0.3)
+    exact = fourier_average(160, length=3, mode=2, velocity=-0.8, diffusivity=0.01, time=0.3)
+    assert np.mean(np.abs(result.values - exact)) < 0.002
+    assert abs(result.mass_drift) < 1e-12

@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "smooth_cases": 24,
+  "pulse_cases": 2,
+  "finest_l1_orders": {
+    "advection/upwind": 0.9778042784345442,
+    "advection/mc": 2.0010372735913915,
+    "mixed/upwind": 0.9839692020200015,
+    "mixed/mc": 1.9815630462576526,
+    "heat/upwind": 1.9999717289896926,
+    "heat/mc": 1.9999717289896926
+  },
+  "max_smooth_mass_drift": 8.304468224196171e-14,
+  "pulse_minimum": 1.5218758257669423e-109,
+  "pulse_maximum": 0.9999999999999978,
+  "gates": {
+    "smooth_mass_drift_below_1e-12": true,
+    "mc_finest_l1_orders_above_1.7": true,
+    "pulse_bounds_within_1e-12": true
+  },
+  "passed": true
+}
