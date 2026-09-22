@@ -23,7 +23,7 @@ cmake.build-type = "Release"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-ra"
+addopts = "-ra --basetemp=.pytest-tmp"
 
 [tool.ruff]
 line-length = 96
