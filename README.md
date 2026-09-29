@@ -203,3 +203,9 @@ exercise code, private data, or exams were opened or copied. All data are synthe
 MIT licensed; see [LICENSE](LICENSE). Development used an AI coding assistant
 under the owner's direction. Git records the configured author and actual
 commits; it does not imply independent human review.
+
+## Academic paper
+
+Read the [research note (PDF)](paper/paper.pdf), edit the [LaTeX source](paper/paper.tex),
+or follow the [compilation instructions](paper/README.md). The manuscript includes
+methods, measured validation, limitations, and references within five pages.
